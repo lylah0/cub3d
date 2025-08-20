@@ -1,29 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/20 16:50:30 by lylrandr          #+#    #+#             */
+/*   Updated: 2025/08/20 18:22:18 by lylrandr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
-// static int	open_file(char *filename)
-// {
-// 	int	fd;
+static int	open_file(char *filename)
+{
+	int	fd;
 
-// 	fd = open(filename, O_RDONLY);
-// 	if (fd == -1)
-// 	{
-// 		ft_printf("Error opening file\n");
-// 		exit(1);
-// 	}
-// 	return (fd);
-// }
-
-
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{
+		printf("Error opening file\n");
+		exit(1);
+	}
+	return (fd);
+}
 
 int main(int ac, char **av)
 {
-    t_data  data;
-	(void)av;
-	(void)ac;
-    // int     fd;
+	t_data	data;
+	int		fd;
 
-    // fd = open_file(argv[1]);
-	init_mlx(&data);
-	mlx_loop(data.game.mlx);
-	return(0);
+	if (ac == 2)
+	{
+		fd = open_file(av[1]);
+		init_data(&data, fd);
+		fill_map(fd, &data);
+		print_map(&data);
+		// init_mlx(&data);
+		// mlx_loop(data.game.mlx);
+		return(0);
+	}
+	printf("too many or too few arguments.\n");
+	return (1);
 }

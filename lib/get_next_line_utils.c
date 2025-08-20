@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moni <moni@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 13:42:31 by moni              #+#    #+#             */
-/*   Updated: 2024/05/02 15:19:31 by moni             ###   ########.fr       */
+/*   Created: 2024/04/11 20:46:39 by lylrandr          #+#    #+#             */
+/*   Updated: 2025/08/20 18:09:14 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+int	gnl_ft_strlen(char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (s[i])
@@ -22,50 +22,80 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strchr_newline(const char *s)
+char	*gnl_ft_strjoin(char *s1, char *s2)
 {
-	if (s == NULL)
+	int		i;
+	int		x;
+	char	*str;
+
+	if (!s1)
+		i = 0;
+	else
+		i = gnl_ft_strlen(s1);
+	str = malloc(sizeof(char) * (i + gnl_ft_strlen(s2) + 1));
+	if (!str)
 		return (NULL);
-	while (*s)
+	i = 0;
+	x = 0;
+	while (s1 && s1[i])
 	{
-		if (*s == '\n')
-			return ((char *)s);
-		s++;
+		str[i] = s1[i];
+		i++;
 	}
-	return (NULL);
+	while (s2 && s2[x])
+	{
+		str[i + x] = s2[x];
+		x++;
+	}
+	str[i + x] = '\0';
+	return (str);
 }
 
-// char	*ft_strjoin(char *s1, char *s2)
-// {
-// 	char	*dest;
-// 	size_t	i;
-// 	size_t	j;
+char	*gnl_ft_strdup(char *s1)
+{
+	int		i;
+	char	*str;
 
-// 	i = -1;
-// 	j = 0;
-// 	if (!s1 && !s2)
-// 		return (NULL);
-// 	if (!s1)
-// 	{
-// 		s1 = (char *)malloc(sizeof(char) * 1);
-// 		s1[0] = '\0';
-// 	}
-// 	dest = malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2)) + 1));
-// 	if (!dest)
-// 		return (NULL);
-// 	while (s1[++i])
-// 		dest[i] = s1[i];
-// 	while (s2[j])
-// 		dest[i++] = s2[j++];
-// 	dest[i] = '\0';
-// 	free(s1);
-// 	return (dest);
-// }
+	i = gnl_ft_strlen(s1);
+	str = malloc(sizeof(char) * (i + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	str[i++] = '\0';
+	return (str);
+}
 
-// In ft_strchr_newline, I've adapted strchr for clarity: it specifically 
-// looks for '\n'.
+int	ft_isnewline(char *stash)
+{
+	int	i;
 
-// In ft_strjoin, s1 is freed at line 59. This is specific to its use in GNL
-// where s1 holds data that has already been read and accumulated. After
-// concatenation with s2, s1 is no longer needed, so freeing s1 helps prevent
-// memory leaks.
+	i = 0;
+	while (stash[i] != '\n' && stash[i])
+		i++;
+	if (stash[i] == '\n')
+		return (i + 1);
+	else
+		return (0);
+}
+
+char	*gnl_ft_strlcpy(char *dst, char *src, int dstsize)
+{
+	int	i;
+
+	i = 0;
+	if (dstsize != 0)
+	{
+		while (i < (dstsize - 1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
+	}
+	return (dst);
+}

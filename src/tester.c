@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   tester.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/11 12:30:01 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/08/20 18:05:06 by lylrandr         ###   ########.fr       */
+/*   Created: 2025/08/20 17:02:51 by lylrandr          #+#    #+#             */
+/*   Updated: 2025/08/20 18:30:48 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#include "../cub3d.h"
 
-# endif
-# include <stdlib.h>
-# include <unistd.h>
+void	print_map(t_data *data)
+{
+	int	i;
+	int	x;
 
-char	*get_next_line(int fd);
-int		gnl_ft_strlen(char *s);
-char	*gnl_ft_strjoin(char *s1, char *s2);
-char	*gnl_ft_strdup(char *s1);
-int		ft_isnewline(char *new_stash);
-char	*gnl_ft_strlcpy(char *dst, char *src, int dstsize);
-#endif
+	i = 0;
+	while (data->map[i])
+	{
+		x = 0;
+		while (data->map[i][x])
+		{
+			printf("%c", data->map[i][x]);
+			x++;
+		}
+		printf("\n");
+		i++;
+	}
+	printf("hello\n");
+}
