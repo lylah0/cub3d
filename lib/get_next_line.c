@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:18:27 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/08/20 18:06:29 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:49:47 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static char	*ft_fill_line(char **stash, char *buffer, int i)
 		free(buffer);
 		return (NULL);
 	}
-	gnl_ft_strlcpy(line, *stash, i + 1);
-	new_stash = gnl_ft_strdup(&(*stash)[i]);
+	ft_strlcpy(line, *stash, i + 1);
+	new_stash = ft_strdup(&(*stash)[i]);
 	free(*stash);
 	*stash = new_stash;
 	return (line);
@@ -50,7 +50,7 @@ char	*ft_end_fd(char **stash, char *buffer, int count)
 		i = ft_isnewline(*stash);
 		if (i > 0)
 			return (ft_fill_line(stash, NULL, i));
-		line = gnl_ft_strdup(*stash);
+		line = ft_strdup(*stash);
 		free(*stash);
 		*stash = NULL;
 		return (line);
@@ -64,7 +64,7 @@ static char	*ft_strjoin_free(char *stash, char *buffer)
 {
 	char	*new_str;
 
-	new_str = gnl_ft_strjoin(stash, buffer);
+	new_str = ft_strjoin(stash, buffer);
 	if (stash)
 		free(stash);
 	return (new_str);

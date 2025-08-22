@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 17:02:51 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/08/20 18:30:48 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/08/22 15:04:13 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,4 @@ void	print_map(t_data *data)
 		printf("\n");
 		i++;
 	}
-	printf("hello\n");
 }

@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:35 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/08/20 18:10:11 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/08/22 15:24:49 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,33 @@ void	init_data(t_data *data, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
+	close(fd);
 	data->map = malloc(sizeof(char *) * ((data->count) + 1));
+}
+
+//remplir la map
+void	fill_map(int fd, t_data *data)
+{
+	int		y;
+	char	*line;
+	char	*temp;
+
+	y = 0;
+	line = get_next_line(fd);
+	while (line != NULL && y < data->count)
+	{
+		temp = ft_strtrim(line, "\n");
+		if (!temp)
+		{
+			printf("Error\n");
+			exit(EXIT_FAILURE);
+		}
+		free(line);
+		line = temp;
+		data->map[y] = line;
+		y++;
+		line = get_next_line(fd);
+	}
+	data->map[data->count] = NULL;
+	close(fd);
 }

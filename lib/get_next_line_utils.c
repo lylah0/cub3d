@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 20:46:39 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/08/20 18:09:14 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/08/22 14:54:30 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	gnl_ft_strlen(char *s)
 	return (i);
 }
 
-char	*gnl_ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
 	int		x;
@@ -51,7 +51,7 @@ char	*gnl_ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
-char	*gnl_ft_strdup(char *s1)
+char	*ft_strdup(char *s1)
 {
 	int		i;
 	char	*str;
@@ -83,7 +83,7 @@ int	ft_isnewline(char *stash)
 		return (0);
 }
 
-char	*gnl_ft_strlcpy(char *dst, char *src, int dstsize)
+char	*ft_strlcpy(char *dst, char *src, int dstsize)
 {
 	int	i;
 

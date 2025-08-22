@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:30 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/08/20 18:22:18 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/08/22 15:36:18 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ int main(int ac, char **av)
 	{
 		fd = open_file(av[1]);
 		init_data(&data, fd);
+		fd = open_file(av[1]);
 		fill_map(fd, &data);
-		print_map(&data);
+		// print_map(&data);
+		if (map_parser(&data))
+			printf("manque info map\n");
 		// init_mlx(&data);
 		// mlx_loop(data.game.mlx);
 		return(0);

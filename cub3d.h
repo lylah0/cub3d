@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:38 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/08/20 18:03:56 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/08/22 15:31:48 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_data
 int		key_move(int keycode, t_data *data);
 void	init_mlx(t_data *data);
 int		close_window_x(void);
-// void	map_parser(int fd, t_data *data);
+int		map_parser(t_data *data);
 void	fill_map(int fd, t_data *data);
 void	init_data(t_data *data, int fd);
 
