@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:38 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/08/22 15:31:48 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:42:02 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ typedef struct s_data
 {
 	int		count;
 	char	**map;
+	char	**file;
+	char	*f_color;
+	char	*c_color;
 	// t_map	map;
 	t_game	game;
 }	t_data;

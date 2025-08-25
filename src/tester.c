@@ -6,27 +6,23 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 17:02:51 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/08/22 15:04:13 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/08/25 18:44:39 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	print_map(t_data *data)
+void print_map(t_data *data)
 {
-	int	i;
-	int	x;
+	int i;
 
+	if (!data->map)
+		printf("no map\n");
 	i = 0;
-	while (data->map[i])
+	while (data->map && data->map[i])
 	{
-		x = 0;
-		while (data->map[i][x])
-		{
-			printf("%c", data->map[i][x]);
-			x++;
-		}
-		printf("\n");
+		printf("%s\n", data->map[i]);
 		i++;
 	}
 }
+

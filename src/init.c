@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:35 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/08/22 15:24:49 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/08/25 18:31:03 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ void	init_data(t_data *data, int fd)
 	}
 	close(fd);
 	data->map = malloc(sizeof(char *) * ((data->count) + 1));
+	data->file = malloc(sizeof(char *) * ((data->count) + 1));
+	data->c_color = malloc(sizeof(char) * 16);
+	data->f_color = malloc(sizeof(char) * 16);
 }
 
 //remplir la map
@@ -55,10 +58,10 @@ void	fill_map(int fd, t_data *data)
 		}
 		free(line);
 		line = temp;
-		data->map[y] = line;
+		data->file[y] = line;
 		y++;
 		line = get_next_line(fd);
 	}
-	data->map[data->count] = NULL;
+	data->file[data->count] = NULL;
 	close(fd);
 }
