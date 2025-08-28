@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:30 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/08/25 18:32:50 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/08/28 16:41:32 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ int main(int ac, char **av)
 		fill_map(fd, &data);
 		if (map_parser(&data))
 			printf("manque info map\n");
-		print_map(&data);
-		// init_mlx(&data);
-		// mlx_loop(data.game.mlx);
+		// print_map(&data);
+		put_map(&data);
+		init_mlx(&data);
+		mlx_loop(data.game.mlx);
 		return(0);
 	}
 	printf("too many or too few arguments.\n");

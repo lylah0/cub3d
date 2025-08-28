@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:38 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/08/25 15:42:02 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/08/28 17:17:10 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <math.h>
 # include <fcntl.h>
 # include "minilibx-mac/mlx.h"   /* [AJOUT] pour préparer l'usage MLX */
+
+#define TILE 6
 
 typedef struct s_map
 {
@@ -57,6 +59,8 @@ int		close_window_x(void);
 int		map_parser(t_data *data);
 void	fill_map(int fd, t_data *data);
 void	init_data(t_data *data, int fd);
+
+void	put_map(t_data *data);
 
 void	print_map(t_data *data);
 

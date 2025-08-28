@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:27 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/08/25 18:45:23 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/08/28 17:37:38 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ int	spawn_setter(t_data *data)
 	}
 	return (0);
 }
-
-
-
 
 int	color_setter(t_data *data)
 {
@@ -97,7 +94,6 @@ int map_setter(t_data *data)
 	data->map[y] = NULL;
 	return (1);
 }
-
 
 int	map_parser(t_data *data)
 {
