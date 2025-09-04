@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:38 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/08/28 17:17:10 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:29:05 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <fcntl.h>
 # include "minilibx-mac/mlx.h"   /* [AJOUT] pour préparer l'usage MLX */
 
-#define TILE 6
+#define TILE 10
 
 typedef struct s_map
 {

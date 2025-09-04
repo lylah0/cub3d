@@ -6,11 +6,18 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 16:31:34 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/08/28 17:17:53 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:37:37 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+static inline int rgb_to_int(int r, int g, int b)
+{
+	return ((r & 0xFF) << 16)
+	| ((g & 0xFF) << 8) | (b & 0xFF);
+}
+
 
 static void draw_cell(t_data *data, int x, int y, int color)
 {
@@ -54,11 +61,11 @@ void put_map(t_data *data)
 				continue;
 			}
 			if (c == '1')
-				draw_cell(data, x, y, 255);
+				draw_cell(data, x, y, rgb_to_int(255, 192, 203));
 			else if (c == '0')
-				draw_cell(data, x, y, 150);
+				draw_cell(data, x, y, rgb_to_int(204, 169, 221));
 			else if (c=='N'||c=='S'||c=='W'||c=='E')
-				draw_cell(data, x, y, 100);
+				draw_cell(data, x, y, rgb_to_int(179, 197, 144));
 			else
 				draw_cell(data, x, y, 0);
 			x++;
