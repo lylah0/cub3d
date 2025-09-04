@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:30 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/02 16:37:16 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:58:41 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@ static int	open_file(char *filename)
 	return (fd);
 }
 
+int render_frame(void *param)
+{
+	t_data *d = (t_data *)param;
+
+	ft_memset(d->game.img.addr, 0, d->game.img.line_len * d->game.img.height);
+	put_map(d);
+	return 0;
+}
+
+
 int main(int ac, char **av)
 {
 	t_data	data;
@@ -41,6 +51,7 @@ int main(int ac, char **av)
 		// print_map(&data);
 		init_mlx(&data);
 		put_map(&data);
+		mlx_loop_hook(data.game.mlx, render_frame, &data);
 		mlx_loop(data.game.mlx);
 		return(0);
 	}

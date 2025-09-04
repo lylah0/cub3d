@@ -6,20 +6,22 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 16:31:34 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/02 17:37:37 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:56:19 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static inline int rgb_to_int(int r, int g, int b)
+//dessiner image dans buffer
+void	put_pixel_img(t_img *im, int x, int y, int color)
 {
-	return ((r & 0xFF) << 16)
-	| ((g & 0xFF) << 8) | (b & 0xFF);
+	if ((unsigned)x >= (unsigned)im->width || (unsigned)y >= (unsigned)im->height)
+		return;
+	*(unsigned int *)(im->addr + y * im->line_len + x * (im->bpp / 8))
+		= (unsigned int)color;
 }
 
-
-static void draw_cell(t_data *data, int x, int y, int color)
+void	draw_cell(t_data *data, int x, int y, int color)
 {
 	int px0 = x * TILE;
 	int py0 = y * TILE;
@@ -32,45 +34,9 @@ static void draw_cell(t_data *data, int x, int y, int color)
 		px = 0;
 		while (px < TILE)
 		{
-			mlx_pixel_put(data->game.mlx,  data->game.win, px0 + px, py0 + py, color);
+			put_pixel_img(&data->game.img, px0 + px, py0 + py, color);
 			px++;
 		}
 		py++;
 	}
 }
-
-// afficher la map en 2d
-void put_map(t_data *data)
-{
-	int		y;
-	int		x;
-	char	c;
-
-	if (!data || !data->map || !data->game.mlx || !data->game.win)
-		return;
-	y = 0;
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			c = data->map[y][x];
-			if (c == '\t' || c == ' ')
-			{
-				x++;
-				continue;
-			}
-			if (c == '1')
-				draw_cell(data, x, y, rgb_to_int(255, 192, 203));
-			else if (c == '0')
-				draw_cell(data, x, y, rgb_to_int(204, 169, 221));
-			else if (c=='N'||c=='S'||c=='W'||c=='E')
-				draw_cell(data, x, y, rgb_to_int(179, 197, 144));
-			else
-				draw_cell(data, x, y, 0);
-			x++;
-		}
-		y++;
-	}
-}
-

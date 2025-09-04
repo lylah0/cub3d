@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:38 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/02 17:29:05 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:56:31 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,20 @@
 # include "minilibx-mac/mlx.h"   /* [AJOUT] pour préparer l'usage MLX */
 
 #define TILE 10
+#define WIN_H 650
+#define WIN_W 750
 
-typedef struct s_map
+typedef	struct s_img {
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+} t_img;
+
+typedef	struct s_map
 {
 	int N;
 	int S;
@@ -35,21 +47,21 @@ typedef struct s_map
 	int W;
 }	t_map;
 
-typedef struct s_game {
+typedef	struct s_game {
 	void	*mlx;
 	void	*win;
-	// t_img img;
 	int		running;
+	t_img	img;
 } t_game;
 
-typedef struct s_data
+typedef	struct s_data
 {
 	int		count;
 	char	**map;
 	char	**file;
 	char	*f_color;
 	char	*c_color;
-	// t_map	map;
+	t_img	img;
 	t_game	game;
 }	t_data;
 
@@ -59,9 +71,12 @@ int		close_window_x(void);
 int		map_parser(t_data *data);
 void	fill_map(int fd, t_data *data);
 void	init_data(t_data *data, int fd);
+int		rgb_to_int(int r, int g, int b);
+void	draw_cell(t_data *data, int x, int y, int color);
 
-void	put_map(t_data *data);
+void	put_pixel_img(t_img *im, int x, int y, int color);
 
 void	print_map(t_data *data);
+void	put_map(t_data *data);
 
 #endif

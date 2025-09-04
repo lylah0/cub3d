@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:35 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/08/28 16:54:53 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/04 15:49:22 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,19 @@
 void	init_mlx(t_data *data)
 {
 	data->game.mlx = mlx_init();
-	data->game.win = mlx_new_window(data->game.mlx, 640, 600, "cub3d");
+	data->game.win = mlx_new_window(data->game.mlx, WIN_W, WIN_H, "cub3d");
+	data->game.img.img  = mlx_new_image(data->game.mlx, WIN_W, WIN_H);
+	data->game.img.addr = mlx_get_data_addr(
+		data->game.img.img,
+		&data->game.img.bpp,
+		&data->game.img.line_len,
+		&data->game.img.endian);
+	data->game.img.width = WIN_W;
+	data->game.img.height = WIN_H;
 	mlx_key_hook(data->game.win, key_move, data);
 	mlx_hook(data->game.win, 17, 0, close_window_x, data);
 }
+
 
 void	init_data(t_data *data, int fd)
 {
