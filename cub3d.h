@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:38 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/04 15:56:31 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/04 18:33:04 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,30 +39,33 @@ typedef	struct s_img {
 	int		height;
 } t_img;
 
-typedef	struct s_map
+typedef	struct s_map_info
 {
 	int N;
 	int S;
 	int E;
 	int W;
-}	t_map;
+	int	lenght;
+}	t_map_info;
 
 typedef	struct s_game {
 	void	*mlx;
 	void	*win;
 	int		running;
 	t_img	img;
-} t_game;
+}	t_game;
 
 typedef	struct s_data
 {
 	int		count;
+	int		dir;
 	char	**map;
 	char	**file;
 	char	*f_color;
 	char	*c_color;
 	t_img	img;
 	t_game	game;
+	t_map_info	map_info;
 }	t_data;
 
 int		key_move(int keycode, t_data *data);
