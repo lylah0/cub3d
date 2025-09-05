@@ -24,7 +24,7 @@ int	spawn_setter(t_data *data)
 	int k;
 
 	if (!data || !data->file || data->count < 4)
-		return (0);
+		return (1);
 	i = 0;
 	while (i + 3 < data->count)
 	{
@@ -33,10 +33,10 @@ int	spawn_setter(t_data *data)
 			&& ft_strncmp(data->file[i + k], expect[k], ft_strlen(expect[k])) == 0)
 			k++;
 		if (k == 4)
-			return (1);
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 int	color_setter(t_data *data)
@@ -57,13 +57,13 @@ int	color_setter(t_data *data)
 			{
 				data->f_color = ft_strdup(data->file[i - 1]);
 				data->c_color = ft_strdup(data->file[i]);
-				return (1);
+				return (0);
 			}
-			return (0);
+			return (1);
 		}
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 int map_setter(t_data *data)
@@ -72,25 +72,25 @@ int map_setter(t_data *data)
 	int y;
 
 	if (!data || !data->file || !data->map)
-		return (0);
+		return (1);
 	i = 0;
 	while (data->file[i] && data->file[i][0] != '1'
 		&& data->file[i][0] != ' ' && data->file[i][0] != '\t')
 		i++;
 	if (!data->file[i])
-		return (0);
+		return (1);
 	y = 0;
 	while (data->file[i] && (data->file[i][0] == '1'
 		|| data->file[i][0] == ' ' || data->file[i][0] == '\t'))
 	{
 		data->map[y] = ft_strdup(data->file[i]);
 		if (!data->map[y])
-			return (0);
+			return (1);
 		i++;
 		y++;
 	}
 	data->map[y] = NULL;
-	return (1);
+	return (0);
 }
 
 void	map_info(t_data *data)
@@ -122,24 +122,24 @@ void	map_info(t_data *data)
 
 int	map_parser(t_data *data)
 {
-	if (!spawn_setter(data))
+	if (spawn_setter(data))
 	{
 		printf("missing spawn\n");
 		return (1);
 	}
-	if (!color_setter(data))
+	if (color_setter(data))
 	{
 		printf("missing color\n");
 		return(1);
 	}
-	if (!map_setter(data))
+	if (map_setter(data))
 	{
 		printf("missing map\n");
 		return (1);
 	}
-	if (!floodfill_map(data))
+	if (map_check(data))
 	{
-		printf("map not valid\n");
+		printf("invalid map\n");
 		return(1);
 	}
 	return (0);

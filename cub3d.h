@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:38 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/04 18:33:04 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/05 14:34:06 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	fill_map(int fd, t_data *data);
 void	init_data(t_data *data, int fd);
 int		rgb_to_int(int r, int g, int b);
 void	draw_cell(t_data *data, int x, int y, int color);
+int		map_check(t_data *data);
 
 void	put_pixel_img(t_img *im, int x, int y, int color);
 

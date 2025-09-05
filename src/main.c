@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:30 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/04 15:58:41 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/05 14:57:27 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int main(int ac, char **av)
 		fd = open_file(av[1]);
 		fill_map(fd, &data);
 		if (map_parser(&data))
-			printf("manque info map\n");
+			return (1);
 		// print_map(&data);
 		init_mlx(&data);
 		put_map(&data);
