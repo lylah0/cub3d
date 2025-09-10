@@ -6,34 +6,89 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 18:21:14 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/05 15:21:53 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:17:58 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	floodfill(t_data *data, int x, int y)
+static int is_spawn(char c) { return (c=='N'||c=='S'||c=='E'||c=='W'); }
+static int is_walk (char c) { return (c=='0' || is_spawn(c)); }
+
+static int leaks_horiz(char **map, int y, int x)
 {
-	if (x < 0 || y < 0 || x >= data->map_info.lenght - 1|| y >= data->count)
-		return;
-	if (data->map[x][y] != '1' && data->map[x][y] != '2')
-	{
-		data->map[x][y] = '2';
-		floodfill(data, x - 1, y);
-		floodfill(data, x + 1, y);
-		floodfill(data, x, y - 1);
-		floodfill(data, x, y + 1);
-	}
+	int len;
+
+	len = (int)ft_strlen(map[y]);
+	/* GAUCHE */
+	if (x - 1 < 0)
+		return (0);
+	if (map[y][x - 1] == ' ')
+		return (0);
+	/* DROITE */
+	if (x + 1 >= len)
+		return (0);
+	if (map[y][x + 1] == ' ')
+		return (0);
+	return (1);
 }
 
-//lancer le floodfill
-int	map_check(t_data *data)
+static int leaks_vert(char **map, int y, int x)
 {
-	int	x;
-	int	y;
+	int	up_len;
+	int	dn_len;
 
-	x = 0;
+	/* HAUT */
+	if (y - 1 < 0)
+		return (0);
+	up_len = (int)ft_strlen(map[y - 1]);
+	if (x >= up_len)
+		return (0);
+	if (map[y - 1][x] == ' ')
+		return (0);
+	/* BAS */
+	if (map[y + 1] == NULL)
+		return (0);
+	dn_len = (int)ft_strlen(map[y + 1]);
+	if (x >= dn_len)
+		return (0);
+	if (map[y + 1][x] == ' ')
+		return (0);
+	return (1);
+}
+
+int map_check(t_data *data)
+{
+	int		y;
+	int		x;
+	int		len;
+	char	c;
+
+	if (!data || !data->map || !data->map[0])
+		return (1);
 	y = 0;
-	floodfill(data, x, y);
+	while (data->map[y])
+	{
+		len = (int)ft_strlen(data->map[y]);
+		x = 0;
+		while (x < len)
+		{
+			c = data->map[y][x];
+			if (c == '\t')
+				c = ' ';
+			if (c != '0' && c != '1' && c != ' ' && !is_spawn(c))
+				return (1);
+			if (is_walk(c))
+			{
+				if (!leaks_horiz(data->map, y, x))
+					return (1);
+				if (!leaks_vert(data->map, y, x))
+					return (1);
+			}
+			x++;
+		}
+		y++;
+	}
 	return (0);
 }
+
