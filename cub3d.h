@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:38 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/05 14:34:06 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:28:04 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef	struct s_map_info
 	int E;
 	int W;
 	int	lenght;
+	int	spawn[2];
 }	t_map_info;
 
 typedef	struct s_game {

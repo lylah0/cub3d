@@ -95,8 +95,9 @@ int map_setter(t_data *data)
 
 void	map_info(t_data *data)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	c;
 
 	i = 0;
 	while(i <= data->count)
@@ -109,15 +110,19 @@ void	map_info(t_data *data)
 		i++;
 	}
 	i = 0;
-	//enregistrer la dir du spawn et l'emplacement + si il y en a qu'un
-	// while(data->map[i])
-	// {
-	// 	j = 0;
-	// 	while (data->map[i][j])
-	// 	{
-	// 		if ()
-	// 	}
-	// }
+	while(data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			c = data->map[i][j];
+			if (c == 'N' || c == 'E' ||  c == 'S' || c == 'W')
+				data->map_info.spawn[0] = i;
+				data->map_info.spawn[1] = j;
+			j++;
+		}
+		i++;
+	}
 }
 
 int	map_parser(t_data *data)
