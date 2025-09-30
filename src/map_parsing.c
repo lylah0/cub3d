@@ -6,26 +6,32 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 18:21:14 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/10 14:17:58 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/30 15:32:11 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int is_spawn(char c) { return (c=='N'||c=='S'||c=='E'||c=='W'); }
-static int is_walk (char c) { return (c=='0' || is_spawn(c)); }
+// accepter espaces/lignes et map doit etre EOF
 
-static int leaks_horiz(char **map, int y, int x)
+static int	is_spawn(char c)
 {
-	int len;
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+static int	is_walk(char c)
+{
+	return (c == '0' || is_spawn(c));
+}
+
+static int	leaks_horiz(char **map, int y, int x)
+{
+	int	len;
 
 	len = (int)ft_strlen(map[y]);
-	/* GAUCHE */
 	if (x - 1 < 0)
 		return (0);
 	if (map[y][x - 1] == ' ')
 		return (0);
-	/* DROITE */
 	if (x + 1 >= len)
 		return (0);
 	if (map[y][x + 1] == ' ')
@@ -33,12 +39,11 @@ static int leaks_horiz(char **map, int y, int x)
 	return (1);
 }
 
-static int leaks_vert(char **map, int y, int x)
+static int	leaks_vert(char **map, int y, int x)
 {
 	int	up_len;
 	int	dn_len;
 
-	/* HAUT */
 	if (y - 1 < 0)
 		return (0);
 	up_len = (int)ft_strlen(map[y - 1]);
@@ -46,7 +51,6 @@ static int leaks_vert(char **map, int y, int x)
 		return (0);
 	if (map[y - 1][x] == ' ')
 		return (0);
-	/* BAS */
 	if (map[y + 1] == NULL)
 		return (0);
 	dn_len = (int)ft_strlen(map[y + 1]);
@@ -57,7 +61,7 @@ static int leaks_vert(char **map, int y, int x)
 	return (1);
 }
 
-int map_check(t_data *data)
+int	map_check(t_data *data)
 {
 	int		y;
 	int		x;
@@ -91,4 +95,3 @@ int map_check(t_data *data)
 	}
 	return (0);
 }
-

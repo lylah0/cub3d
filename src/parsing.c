@@ -1,43 +1,16 @@
-	/* ************************************************************************** */
-	/*                                                                            */
-	/*                                                        :::      ::::::::   */
-	/*   parsing.c                                          :+:      :+:    :+:   */
-	/*                                                    +:+ +:+         +:+     */
-	/*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
-	/*                                                +#+#+#+#+#+   +#+           */
-	/*   Created: 2025/08/20 16:50:27 by lylrandr          #+#    #+#             */
-	/*   Updated: 2025/08/28 17:37:38 by lylrandr         ###   ########.fr       */
-	/*                                                                            */
-	/* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/20 16:50:27 by lylrandr          #+#    #+#             */
+/*   Updated: 2025/09/30 17:31:29 by lylrandr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	#include "../cub3d.h"
-
-int	spawn_setter(t_data *data)
-{
-	static const char *expect[4] = {
-		"NO ./path_north_texture",
-		"SO ./path_south_texture",
-		"WE ./path_west_texture",
-		"EA ./path_east_texture"
-	};
-	int i;
-	int k;
-
-	if (!data || !data->file || data->count < 4)
-		return (1);
-	i = 0;
-	while (i + 3 < data->count)
-	{
-		k = 0;
-		while (k < 4 && data->file[i + k]
-			&& ft_strncmp(data->file[i + k], expect[k], ft_strlen(expect[k])) == 0)
-			k++;
-		if (k == 4)
-			return (0);
-		i++;
-	}
-	return (1);
-}
+#include "../cub3d.h"
 
 int	color_setter(t_data *data)
 {
@@ -66,22 +39,22 @@ int	color_setter(t_data *data)
 	return (1);
 }
 
-int map_setter(t_data *data)
+int	map_setter(t_data *data)
 {
-	int i;
-	int y;
+	int	i;
+	int	y;
 
 	if (!data || !data->file || !data->map)
 		return (1);
 	i = 0;
-	while (data->file[i] && data->file[i][0] != '1'
-		&& data->file[i][0] != ' ' && data->file[i][0] != '\t')
+	while (data->file[i] && data->file[i][0] != '1' && data->file[i][0] != ' '
+		&& data->file[i][0] != '\t')
 		i++;
 	if (!data->file[i])
 		return (1);
 	y = 0;
-	while (data->file[i] && (data->file[i][0] == '1'
-		|| data->file[i][0] == ' ' || data->file[i][0] == '\t'))
+	while (data->file[i] && (data->file[i][0] == '1' || data->file[i][0] == ' '
+			|| data->file[i][0] == '\t'))
 	{
 		data->map[y] = ft_strdup(data->file[i]);
 		if (!data->map[y])
@@ -90,6 +63,8 @@ int map_setter(t_data *data)
 		y++;
 	}
 	data->map[y] = NULL;
+	if (i != data->count)
+		return (1);
 	return (0);
 }
 
@@ -100,7 +75,7 @@ void	map_info(t_data *data)
 	char	c;
 
 	i = 0;
-	while(i <= data->count)
+	while (i <= data->count)
 	{
 		j = 0;
 		while (data->map[i][j])
@@ -110,15 +85,17 @@ void	map_info(t_data *data)
 		i++;
 	}
 	i = 0;
-	while(data->map[i])
+	while (data->map[i])
 	{
 		j = 0;
 		while (data->map[i][j])
 		{
 			c = data->map[i][j];
-			if (c == 'N' || c == 'E' ||  c == 'S' || c == 'W')
+			if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
+			{
 				data->map_info.spawn[0] = i;
 				data->map_info.spawn[1] = j;
+			}
 			j++;
 		}
 		i++;
@@ -135,7 +112,7 @@ int	map_parser(t_data *data)
 	if (color_setter(data))
 	{
 		printf("missing color\n");
-		return(1);
+		return (1);
 	}
 	if (map_setter(data))
 	{
@@ -145,9 +122,7 @@ int	map_parser(t_data *data)
 	if (map_check(data))
 	{
 		printf("invalid map\n");
-		return(1);
+		return (1);
 	}
 	return (0);
 }
-
-

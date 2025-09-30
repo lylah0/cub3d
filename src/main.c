@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:30 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/05 14:57:27 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/30 15:06:03 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ static int	open_file(char *filename)
 	return (fd);
 }
 
-int render_frame(void *param)
+int	render_frame(void *param)
 {
-	t_data *d = (t_data *)param;
+	t_data	*d;
 
+	d = (t_data *)param;
 	ft_memset(d->game.img.addr, 0, d->game.img.line_len * d->game.img.height);
 	put_map(d);
-	return 0;
+	return (0);
 }
 
-
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_data	data;
 	int		fd;
@@ -53,7 +53,7 @@ int main(int ac, char **av)
 		put_map(&data);
 		mlx_loop_hook(data.game.mlx, render_frame, &data);
 		mlx_loop(data.game.mlx);
-		return(0);
+		return (0);
 	}
 	printf("too many or too few arguments.\n");
 	return (1);

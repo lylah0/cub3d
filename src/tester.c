@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 17:02:51 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/04 15:58:08 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/30 15:17:01 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ void put_map(t_data *data)
 			if (c != ' ' && c != '\t')
 			{
 				if (c == '1')
-					draw_cell(data, x, y, rgb_to_int(50, 50, 50));
-				else if (c == '0')
-					draw_cell(data, x, y, rgb_to_int(200, 200, 200));
+					draw_cell(data, x, y, rgb_to_int(230, 154, 211)); //mur
+				else if (c == '0') //vide
+					draw_cell(data, x, y, rgb_to_int(192, 230, 154)); //spawn
 				else if (c=='N'||c=='S'||c=='W'||c=='E')
-					draw_cell(data, x, y, rgb_to_int(0, 200, 100));
-				else
-					draw_cell(data, x, y, rgb_to_int(255, 0, 0));
+					draw_cell(data, x, y, rgb_to_int(200, 0, 0));
+				else //reste
+					draw_cell(data, x, y, rgb_to_int(154, 195, 230));
 			}
 			x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:44:57 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/04 15:45:41 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/30 15:06:28 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 int	rgb_to_int(int r, int g, int b)
 {
-	return ((r & 0xFF) << 16)
-	| ((g & 0xFF) << 8) | (b & 0xFF);
+	return ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF);
 }
