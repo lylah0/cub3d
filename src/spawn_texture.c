@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:29:11 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/30 17:40:28 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/30 17:55:59 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	spawn_check(t_data *data, char *file)
 		data->map_info.W = 1;
 	if (ft_strncmp(file, "EA", 2) == 0)
 		data->map_info.E = 1;
-	if (!data->map_info.N || !data->map_info.S || !data->map_info.W
-		|| !data->map_info.E)
+	if (!data->map_info.N && !data->map_info.S && !data->map_info.W
+		&& !data->map_info.E)
 		return (1);
 	return (0);
 }

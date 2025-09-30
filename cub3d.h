@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:38 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/30 17:31:43 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/30 17:43:28 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "keys.h"
 # include "lib/libft.h"
-# include "minilibx-mac/mlx.h" /* [AJOUT] pour préparer l'usage MLX */
+# include "minilibx-mac/mlx.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <math.h>

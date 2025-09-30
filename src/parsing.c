@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:27 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/30 17:31:29 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/09/30 17:58:04 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	map_info(t_data *data)
 	char	c;
 
 	i = 0;
-	while (i <= data->count)
+	while (data->map[i])
 	{
 		j = 0;
 		while (data->map[i][j])
