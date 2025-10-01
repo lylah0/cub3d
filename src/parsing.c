@@ -6,13 +6,13 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:27 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/30 17:58:04 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/10/01 16:52:34 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	color_setter(t_data *data)
+int	color_setter(t_data* data)
 {
 	int	i;
 	int	j;
@@ -39,7 +39,7 @@ int	color_setter(t_data *data)
 	return (1);
 }
 
-int	map_setter(t_data *data)
+int	map_setter(t_data* data)
 {
 	int	i;
 	int	y;
@@ -54,7 +54,7 @@ int	map_setter(t_data *data)
 		return (1);
 	y = 0;
 	while (data->file[i] && (data->file[i][0] == '1' || data->file[i][0] == ' '
-			|| data->file[i][0] == '\t'))
+		|| data->file[i][0] == '\t'))
 	{
 		data->map[y] = ft_strdup(data->file[i]);
 		if (!data->map[y])
@@ -68,7 +68,7 @@ int	map_setter(t_data *data)
 	return (0);
 }
 
-void	map_info(t_data *data)
+void	map_info(t_data* data)
 {
 	int		i;
 	int		j;
@@ -93,8 +93,8 @@ void	map_info(t_data *data)
 			c = data->map[i][j];
 			if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 			{
-				data->map_info.spawn[0] = i;
-				data->map_info.spawn[1] = j;
+				data->map_info.spawn[0] = j;
+				data->map_info.spawn[1] = i;
 			}
 			j++;
 		}
@@ -102,7 +102,7 @@ void	map_info(t_data *data)
 	}
 }
 
-int	map_parser(t_data *data)
+int	map_parser(t_data* data)
 {
 	if (spawn_setter(data))
 	{

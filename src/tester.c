@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 17:02:51 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/30 15:17:01 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:57:02 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ void put_map(t_data *data)
 	int  y = 0, x;
 	char c;
 
+	printf("spawn=(x=%d,y=%d)\n", data->map_info.spawn[0], data->map_info.spawn[1]);
+	printf("map[0][0] avant draw = '%c'\n", data->map[0][0]);
 	if (!data || !data->map || !data->game.mlx || !data->game.win)
 		return;
-
 	while (data->map[y])
 	{
 		x = 0;

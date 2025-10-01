@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:35 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/30 16:30:48 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/10/01 19:02:15 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	init_data(t_data *data, int fd)
 		line = get_next_line(fd);
 	}
 	close(fd);
+	data->map_info.spawn[0] = -1;
+	data->map_info.spawn[1] = -1;
 	data->map_info.N = 0;
 	data->map_info.S = 0;
 	data->map_info.W = 0;

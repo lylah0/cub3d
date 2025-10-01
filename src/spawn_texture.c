@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:29:11 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/30 17:55:59 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/10/01 17:40:43 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,25 @@
 int	spawn_check(t_data *data, char *file)
 {
 	if (ft_strncmp(file, "NO", 2) == 0)
+	{
 		data->map_info.N = 1;
+		data->map_info.dir = 'N';
+	}
 	if (ft_strncmp(file, "SO", 2) == 0)
+	{
 		data->map_info.S = 1;
+		data->map_info.dir = 'S';
+	}
 	if (ft_strncmp(file, "WE", 2) == 0)
+	{
 		data->map_info.W = 1;
+		data->map_info.dir = 'W';
+	}
 	if (ft_strncmp(file, "EA", 2) == 0)
+	{
 		data->map_info.E = 1;
+		data->map_info.dir = 'E';
+	}
 	if (!data->map_info.N && !data->map_info.S && !data->map_info.W
 		&& !data->map_info.E)
 		return (1);

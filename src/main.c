@@ -6,7 +6,7 @@
 /*   By: lylrandr <lylrandr@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 16:50:30 by lylrandr          #+#    #+#             */
-/*   Updated: 2025/09/30 15:06:03 by lylrandr         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:57:22 by lylrandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	main(int ac, char **av)
 		// print_map(&data);
 		init_mlx(&data);
 		put_map(&data);
+		init_player_from_spawn(&data, data.map_info.dir);
 		mlx_loop_hook(data.game.mlx, render_frame, &data);
 		mlx_loop(data.game.mlx);
 		return (0);
